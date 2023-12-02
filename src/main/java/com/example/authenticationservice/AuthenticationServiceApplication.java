@@ -1,7 +1,14 @@
 package com.example.authenticationservice;
 
+import com.example.authenticationservice.dto.RegisterRequest;
+import com.example.authenticationservice.service.AuthenticationService;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+
+import static com.example.authenticationservice.entity.Role.ADMIN;
+import static com.example.authenticationservice.entity.Role.DOCTOR;
 
 @SpringBootApplication
 public class AuthenticationServiceApplication {
@@ -10,7 +17,7 @@ public class AuthenticationServiceApplication {
         SpringApplication.run(AuthenticationServiceApplication.class, args);
     }
 
-    /*@Bean
+    @Bean
     public CommandLineRunner commandLineRunner(
             AuthenticationService authenticationService
     ) {
@@ -22,17 +29,16 @@ public class AuthenticationServiceApplication {
                     .password("password")
                     .role(ADMIN)
                     .build();
-            System.out.println("Admin token: " + authenticationService.register(admin).getAccessToken());
+            System.out.println("Admin token: " + authenticationService.register(admin).getToken());
 
-            var manager = RegisterRequest.builder()
-                    .firstName("Admin")
-                    .lastName("Admin")
-                    .email("manager@mail.com")
+            var doctor = RegisterRequest.builder()
+                    .firstName("Doctor")
+                    .lastName("Doctor")
+                    .email("doctor@mail.com")
                     .password("password")
-                    .role(MANAGER)
+                    .role(DOCTOR)
                     .build();
-            System.out.println("Manager token: " + authenticationService.register(manager).getAccessToken());
-
+            System.out.println("Doctor token: " + authenticationService.register(doctor).getToken());
         };
-    }*/
+    }
 }
