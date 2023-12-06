@@ -34,14 +34,26 @@ public class SecurityConfig {
         http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(req ->
-                        req.requestMatchers("/api/v1/auth/**")
+                        req.requestMatchers(
+                                "/api/v1/auth/**",
+                                        "/v2/api-docs",
+                                        "/v3/api-docs",
+                                        "/v3/api-docs/**",
+                                        "/swagger-resources",
+                                        "/swagger-resources/**",
+                                        "/configuration/ui",
+                                        "/configuration/security",
+                                        "/swagger-ui/**",
+                                        "/webjars/**",
+                                        "/swagger-ui.html"
+                                )
                                 .permitAll()
-                                .requestMatchers("/api/v1/user/**").hasAnyRole(ADMIN.name(), DOCTOR.name(), USER.name())
+                                .requestMatchers("/api/v1/patient/**").hasAnyRole(ADMIN.name(), DOCTOR.name(), PATIENT.name())
 
-                                .requestMatchers(GET, "/api/v1/user/**").hasAnyAuthority(ADMIN_READ.name(), DOCTOR_READ.name(), USER_READ.name())
-                                .requestMatchers(POST, "/api/v1/user/**").hasAnyAuthority(ADMIN_CREATE.name(), DOCTOR_CREATE.name())
-                                .requestMatchers(PUT, "/api/v1/user/**").hasAnyAuthority(ADMIN_UPDATE.name(), DOCTOR_UPDATE.name())
-                                .requestMatchers(DELETE, "/api/v1/user/**").hasAnyAuthority(ADMIN_DELETE.name(), DOCTOR_DELETE.name())
+                                .requestMatchers(GET, "/api/v1/patient/**").hasAnyAuthority(ADMIN_READ.name(), DOCTOR_READ.name(), PATIENT_READ.name())
+                                .requestMatchers(POST, "/api/v1/patient/**").hasAnyAuthority(ADMIN_CREATE.name(), DOCTOR_CREATE.name())
+                                .requestMatchers(PUT, "/api/v1/patient/**").hasAnyAuthority(ADMIN_UPDATE.name(), DOCTOR_UPDATE.name())
+                                .requestMatchers(DELETE, "/api/v1/patient/**").hasAnyAuthority(ADMIN_DELETE.name(), DOCTOR_DELETE.name())
 
                                 .requestMatchers("/api/v1/doctor/**").hasAnyRole(ADMIN.name(), DOCTOR.name())
 

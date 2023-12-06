@@ -29,7 +29,7 @@ public class AuthenticationServiceApplication {
                     .password("password")
                     .role(ADMIN)
                     .build();
-            System.out.println("Admin token: " + authenticationService.register(admin).getToken());
+            System.out.println("Admin token: " + authenticationService.register(admin).getAccessToken());
 
             var doctor = RegisterRequest.builder()
                     .firstName("Doctor")
@@ -38,7 +38,7 @@ public class AuthenticationServiceApplication {
                     .password("password")
                     .role(DOCTOR)
                     .build();
-            System.out.println("Doctor token: " + authenticationService.register(doctor).getToken());
+            System.out.println("Doctor token: " + authenticationService.register(doctor).getAccessToken());
         };
     }
 }

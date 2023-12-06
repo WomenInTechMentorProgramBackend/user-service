@@ -14,22 +14,18 @@ import static com.example.authenticationservice.entity.Permission.*;
 @RequiredArgsConstructor
 public enum Role {
 
-    USER(
+    PATIENT(
             Set.of(
-                    USER_READ,
-                    ADMIN_READ,
-                    ADMIN_UPDATE,
-                    ADMIN_DELETE,
-                    ADMIN_CREATE,
-                    DOCTOR_READ,
-                    DOCTOR_UPDATE,
-                    DOCTOR_DELETE,
-                    DOCTOR_CREATE
+                    PATIENT_READ
             )
     ),
 
     ADMIN(
             Set.of(
+                    PATIENT_READ,
+                    PATIENT_UPDATE,
+                    PATIENT_DELETE,
+                    PATIENT_CREATE,
                     ADMIN_READ,
                     ADMIN_UPDATE,
                     ADMIN_DELETE,
