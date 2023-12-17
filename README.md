@@ -5,7 +5,7 @@ Welcome to the User Service for the Medical Center! This service provides a conv
 ## Application Launch ##
 
 * To download the repository from github, you need to use the terminal command
-  `git clone git@github.com:WomenInTechMentorProgramBackend/authentication-service.git`
+  `git clone git@github.com:WomenInTechMentorProgramBackend/user-service.git`
 * Go to the project folder and open a terminal in it
 * After that, you need to type the following commands in the terminal:
   `mvn clean install`
