@@ -49,6 +49,10 @@ public class User implements UserDetails {
     @Enumerated(EnumType.STRING)
     private Role role;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "photo_id", referencedColumnName = "id")
+    private Photo photo;
+
     @OneToMany(mappedBy = "user")
     private List<Token> tokens;
 

@@ -3,11 +3,9 @@ package com.example.authenticationservice.service;
 import com.example.authenticationservice.dto.AuthenticationRequest;
 import com.example.authenticationservice.dto.AuthenticationResponse;
 import com.example.authenticationservice.dto.RegisterRequest;
-import com.example.authenticationservice.entity.Token;
+import com.example.authenticationservice.entity.*;
+import com.example.authenticationservice.repository.PhotoRepository;
 import com.example.authenticationservice.repository.TokenRepository;
-import com.example.authenticationservice.entity.TokenType;
-import com.example.authenticationservice.entity.Role;
-import com.example.authenticationservice.entity.User;
 import com.example.authenticationservice.repository.UserRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.http.HttpServletRequest;
@@ -21,6 +19,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 
@@ -34,7 +33,8 @@ public class AuthenticationService {
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
 
-    public AuthenticationResponse register(RegisterRequest request) {
+    public String register(RegisterRequest request) {
+
         var user = User.builder()
                 .firstName(request.getFirstName())
                 .lastName(request.getLastName())
@@ -45,14 +45,10 @@ public class AuthenticationService {
                 .password(passwordEncoder.encode(request.getPassword()))
                 .role(request.getRole())
                 .build();
-        var savedUser = userRepository.save(user);
-        var jwtToken = jwtService.generateToken(user);
-        var refreshToken = jwtService.generateRefreshToken(user);
-        saveUserToken(savedUser, jwtToken);
-        return AuthenticationResponse.builder()
-                .accessToken(jwtToken)
-                .refreshToken(refreshToken)
-                .build();
+
+        userRepository.save(user);
+
+        return "User with email " + request.getEmail() + " has been successfully registered.";
     }
 
     public AuthenticationResponse authenticate(AuthenticationRequest request) {
