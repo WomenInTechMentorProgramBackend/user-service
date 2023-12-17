@@ -4,7 +4,6 @@ import com.example.authenticationservice.dto.AuthenticationRequest;
 import com.example.authenticationservice.dto.AuthenticationResponse;
 import com.example.authenticationservice.dto.RegisterRequest;
 import com.example.authenticationservice.entity.*;
-import com.example.authenticationservice.repository.PhotoRepository;
 import com.example.authenticationservice.repository.TokenRepository;
 import com.example.authenticationservice.repository.UserRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -14,12 +13,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 
